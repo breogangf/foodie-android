@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -144,6 +145,7 @@ public class RecipeListFragment extends Fragment {
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
 
                 //TODO load recipe detail
+                loadRecipeById(Session.getSrecipes().get(position).get_id());
 
             }
         }).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
@@ -211,6 +213,51 @@ public class RecipeListFragment extends Fragment {
     }
 
 
+    private void loadRecipeById(String id) {
+
+        showProgress(true);
+
+        RestAdapter restAdapter = (new RestAdapter.Builder())
+                .setEndpoint(Global.API)
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setLog(new RestAdapter.Log() {
+                    @Override
+                    public void log(String msg) {
+                        Log.i("RETROFIT", msg);
+                    }
+                }).build();
+
+        recipe recipe = restAdapter.create(recipe.class);
+
+        recipe.getRecipeById(id, new Callback<Recipe>() {
+
+            @Override
+            public void success(Recipe recipe, Response response) {
+
+                Fragment fragment;
+                FragmentManager fragmentManager = getFragmentManager();
+                fragment = RecipeDetailFragment.newInstance(recipe);
+                beginFragmentTransaction(fragment, fragmentManager);
+
+                showProgress(false);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                error.getCause();
+                showProgress(false);
+            }
+        });
+    }
+
+    private void beginFragmentTransaction(Fragment fragment, FragmentManager fragmentManager) {
+        fragmentManager.beginTransaction()
+                .replace(R.id.main_container, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -248,7 +295,7 @@ public class RecipeListFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        void onFragmentInteraction(Uri uri);
     }
 
 }

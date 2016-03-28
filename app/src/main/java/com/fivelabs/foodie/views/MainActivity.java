@@ -17,7 +17,7 @@ import com.fivelabs.foodie.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-        RecipeListFragment.OnFragmentInteractionListener{
+        RecipeListFragment.OnFragmentInteractionListener, RecipeDetailFragment.OnFragmentInteractionListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

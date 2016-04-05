@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import com.fivelabs.foodie.util.Global;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by breogangf on 26/3/16.
  */
@@ -15,6 +18,8 @@ public class Recipe implements Parcelable {
     int cook_time;
     String image;
     String _id;
+    List<Ingredient> ingredients = new ArrayList<Ingredient>();
+    List<Step> directions = new ArrayList<Step>();
 
     protected Recipe(Parcel in) {
         name = in.readString();
@@ -22,6 +27,8 @@ public class Recipe implements Parcelable {
         cook_time = in.readInt();
         image = in.readString();
         _id = in.readString();
+        ingredients = in.readArrayList(Ingredient.class.getClassLoader());
+        directions = in.readArrayList(Step.class.getClassLoader());
     }
 
     public static final Creator<Recipe> CREATOR = new Creator<Recipe>() {
@@ -76,6 +83,24 @@ public class Recipe implements Parcelable {
         this._id = _id;
     }
 
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public List<Step> getSteps() {
+        return directions;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.directions = steps;
+    }
+
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -84,6 +109,8 @@ public class Recipe implements Parcelable {
                 ", cook_time=" + cook_time +
                 ", image='" + image + '\'' +
                 ", _id='" + _id + '\'' +
+                ", ingredients=" + ingredients +
+                ", steps=" + directions +
                 '}';
     }
 
@@ -99,5 +126,7 @@ public class Recipe implements Parcelable {
         dest.writeInt(cook_time);
         dest.writeString(image);
         dest.writeString(_id);
+        dest.writeValue(ingredients);
+        dest.writeValue(directions);
     }
 }

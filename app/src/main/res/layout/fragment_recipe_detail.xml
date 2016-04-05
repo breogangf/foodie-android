@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <android.support.v7.widget.CardView
         android:id="@+id/cv"
         android:layout_width="match_parent"
@@ -15,67 +19,115 @@
             android:padding="16dp">
 
             <TextView
-                android:layout_centerHorizontal="true"
                 android:id="@+id/detail_recipe_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
                 android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
                 android:id="@+id/recipe_detail_picture"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/detail_recipe_name"
-                android:layout_height="wrap_content"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp" />
 
             <LinearLayout
-                android:id="@+id/time_layout"
+                android:id="@+id/fast_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/recipe_detail_picture"
-                android:layout_marginTop="10dp">
+                android:gravity="center_horizontal"
+                android:layout_below="@id/recipe_detail_picture">
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/clock" />
-
-                <TextView
-                    android:id="@+id/detail_cooking_time"
+                <LinearLayout
+                    android:id="@+id/time_layout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="20sp" />
+                    android:layout_marginTop="10dp">
 
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/clock" />
+
+                    <TextView
+                        android:id="@+id/detail_cooking_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/category_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/time_layout"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/food" />
+
+                    <TextView
+                        android:id="@+id/detail_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="5dp"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/ingredients_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fast_info"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="@string/ingredients" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/ingredients_list_layout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/time_layout"
-                android:layout_marginTop="20dp">
+                android:layout_below="@id/ingredients_title"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"/>
 
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/food" />
+            <TextView
+                android:id="@+id/directions_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ingredients_list_layout"
+                android:layout_marginTop="20dp"
+                android:textSize="20sp"
+                android:textStyle="bold"
 
-                <TextView
-                    android:id="@+id/detail_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="20sp" />
+                android:text="@string/steps" />
 
-            </LinearLayout>
-
+            <LinearLayout
+                android:id="@+id/directions_list_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/directions_title"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"/>
 
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
+
+
+    </ScrollView>
 
 </RelativeLayout>

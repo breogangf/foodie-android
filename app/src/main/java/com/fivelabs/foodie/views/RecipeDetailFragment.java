@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +54,9 @@ public class RecipeDetailFragment extends Fragment {
         TextView category = (TextView) myInflatedView.findViewById(R.id.detail_category);
         ImageView image = (ImageView) myInflatedView.findViewById(R.id.recipe_detail_picture);
 
+        LinearLayout ingredientsLinearLayout = (LinearLayout) myInflatedView.findViewById(R.id.ingredients_list_layout);
+        LinearLayout directionsLinearLayout = (LinearLayout) myInflatedView.findViewById(R.id.directions_list_layout);
+
         recipe_name.setText(mRecipe.getName());
         cooking_time.setText(String.valueOf(mRecipe.getCook_time()));
         category.setText(mRecipe.getCategory());
@@ -61,7 +65,31 @@ public class RecipeDetailFragment extends Fragment {
         Picasso.with(getActivity()).load(mRecipe.getImage())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.error)
+                .fit()
+                .centerCrop()
                 .into(image);
+
+        for (int i = 0; i < mRecipe.getIngredients().size(); i++) {
+            TextView tvIngredient = new TextView(getActivity());
+            tvIngredient.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            tvIngredient.setText("● " + mRecipe.getIngredients().get(i).getName());
+            ingredientsLinearLayout.addView(tvIngredient);
+
+            TextView tvIngredientQuantity = new TextView(getActivity());
+            tvIngredientQuantity.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            tvIngredientQuantity.setText("    ↳" + mRecipe.getIngredients().get(i).getQuantity());
+            ingredientsLinearLayout.addView(tvIngredientQuantity);
+        }
+
+        for (int i = 0; i < mRecipe.getSteps().size(); i++) {
+            TextView textViewStep = new TextView(getActivity());
+            textViewStep.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            textViewStep.setText(mRecipe.getSteps().get(i).getStep() + ". " + mRecipe.getSteps().get(i).getDescription());
+            directionsLinearLayout.addView(textViewStep);
+        }
 
         return myInflatedView;
 

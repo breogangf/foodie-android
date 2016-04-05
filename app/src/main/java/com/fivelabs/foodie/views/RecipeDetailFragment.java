@@ -8,11 +8,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fivelabs.foodie.R;
 import com.fivelabs.foodie.model.Recipe;
+import com.squareup.picasso.Picasso;
 
 public class RecipeDetailFragment extends Fragment {
 
@@ -49,10 +51,17 @@ public class RecipeDetailFragment extends Fragment {
         TextView recipe_name = (TextView) myInflatedView.findViewById(R.id.detail_recipe_name);
         TextView cooking_time = (TextView) myInflatedView.findViewById(R.id.detail_cooking_time);
         TextView category = (TextView) myInflatedView.findViewById(R.id.detail_category);
+        ImageView image = (ImageView) myInflatedView.findViewById(R.id.recipe_detail_picture);
 
         recipe_name.setText(mRecipe.getName());
         cooking_time.setText(String.valueOf(mRecipe.getCook_time()));
         category.setText(mRecipe.getCategory());
+
+        //Download image using picasso library
+        Picasso.with(getActivity()).load(mRecipe.getImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
+                .into(image);
 
         return myInflatedView;
 

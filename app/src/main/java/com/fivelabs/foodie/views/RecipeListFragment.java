@@ -198,7 +198,7 @@ public class RecipeListFragment extends Fragment {
                 LinearLayoutManager llm = new LinearLayoutManager(getActivity());
                 rv.setLayoutManager(llm);
 
-                RVAdapterRecipes adapter = new RVAdapterRecipes(Session.getSrecipes());
+                RVAdapterRecipes adapter = new RVAdapterRecipes(getActivity(), Session.getSrecipes());
                 rv.setAdapter(adapter);
 
                 showProgress(false);

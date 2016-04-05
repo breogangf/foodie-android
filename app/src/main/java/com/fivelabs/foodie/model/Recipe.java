@@ -3,6 +3,8 @@ package com.fivelabs.foodie.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fivelabs.foodie.util.Global;
+
 /**
  * Created by breogangf on 26/3/16.
  */
@@ -11,12 +13,14 @@ public class Recipe implements Parcelable {
     String name;
     String category;
     int cook_time;
+    String image;
     String _id;
 
     protected Recipe(Parcel in) {
         name = in.readString();
         category = in.readString();
         cook_time = in.readInt();
+        image = in.readString();
         _id = in.readString();
     }
 
@@ -56,6 +60,14 @@ public class Recipe implements Parcelable {
         this.cook_time = cook_time;
     }
 
+    public String getImage() {
+        return Global.IMAGES_URL + "/" + image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String get_id() {
         return _id;
     }
@@ -70,6 +82,7 @@ public class Recipe implements Parcelable {
                 "name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", cook_time=" + cook_time +
+                ", image='" + image + '\'' +
                 ", _id='" + _id + '\'' +
                 '}';
     }
@@ -84,6 +97,7 @@ public class Recipe implements Parcelable {
         dest.writeString(name);
         dest.writeString(category);
         dest.writeInt(cook_time);
+        dest.writeString(image);
         dest.writeString(_id);
     }
 }

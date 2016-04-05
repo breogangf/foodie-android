@@ -1,14 +1,17 @@
 package com.fivelabs.foodie.helpers;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.fivelabs.foodie.R;
 import com.fivelabs.foodie.model.Recipe;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,9 +21,11 @@ import java.util.List;
 public class RVAdapterRecipes extends RecyclerView.Adapter<RVAdapterRecipes.RecipeViewHolder>{
 
     List<Recipe> recipes;
+    private Context mContext;
 
-    public RVAdapterRecipes(List<Recipe> recipes){
+    public RVAdapterRecipes(Context context, List<Recipe> recipes){
         this.recipes = recipes;
+        this.mContext =  context;
     }
 
     public static class RecipeViewHolder extends RecyclerView.ViewHolder {
@@ -28,6 +33,7 @@ public class RVAdapterRecipes extends RecyclerView.Adapter<RVAdapterRecipes.Reci
         TextView name;
         TextView cookingTime;
         TextView type;
+        ImageView image;
 
         RecipeViewHolder(View itemView) {
             super(itemView);
@@ -35,6 +41,7 @@ public class RVAdapterRecipes extends RecyclerView.Adapter<RVAdapterRecipes.Reci
             name = (TextView)itemView.findViewById(R.id.recipe_name);
             cookingTime = (TextView)itemView.findViewById(R.id.cooking_time);
             type = (TextView)itemView.findViewById(R.id.recipe_type);
+            image = (ImageView) itemView.findViewById(R.id.recipe_photo);
         }
     }
 
@@ -50,6 +57,12 @@ public class RVAdapterRecipes extends RecyclerView.Adapter<RVAdapterRecipes.Reci
         holder.name.setText(recipes.get(position).getName());
         holder.cookingTime.setText(String.valueOf(recipes.get(position).getCook_time()));
         holder.type.setText(recipes.get(position).getCategory());
+
+        //Download image using picasso library
+        Picasso.with(mContext).load(recipes.get(position).getImage())
+                .placeholder(R.drawable.placeholder)
+                .error(R.drawable.error)
+                .into(holder.image);
     }
 
     @Override

@@ -14,6 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.fivelabs.foodie.R;
+import com.fivelabs.foodie.util.Common;
+import com.fivelabs.foodie.util.Global;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -99,6 +101,10 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_recipes:
                 fragment = new RecipeListFragment();
                 beginFragmentTransaction(fragment, fragmentManager);
+                break;
+
+            case R.id.nav_share:
+                Common.shareAnyApp(this, "Foodie", getString(R.string.loving_this_app) + "\n" + Global.APP_DOWNLOAD_LINK + "\n" + getString(R.string.simple_and_delicious));
                 break;
         }
 

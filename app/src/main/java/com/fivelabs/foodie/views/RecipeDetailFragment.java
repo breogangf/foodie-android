@@ -8,6 +8,9 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import com.fivelabs.foodie.R;
 import com.fivelabs.foodie.model.Recipe;
+import com.fivelabs.foodie.util.Common;
 import com.squareup.picasso.Picasso;
 
 public class RecipeDetailFragment extends Fragment {
@@ -53,6 +57,16 @@ public class RecipeDetailFragment extends Fragment {
         TextView cooking_time = (TextView) myInflatedView.findViewById(R.id.detail_cooking_time);
         TextView category = (TextView) myInflatedView.findViewById(R.id.detail_category);
         ImageView image = (ImageView) myInflatedView.findViewById(R.id.recipe_detail_picture);
+        ImageButton share_button = (ImageButton) myInflatedView.findViewById(R.id.share_button);
+
+        Animation anim_wobble = AnimationUtils.loadAnimation(getActivity(), R.anim.wobble);
+        share_button.startAnimation(anim_wobble);
+        share_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common.shareAnyApp(getActivity(), "Foodie: " + mRecipe.getName() , getActivity().getString(R.string.love_this_recipe) + "\n" + Common.generateRecipeURL(mRecipe.get_id()));
+            }
+        });
 
         LinearLayout ingredientsLinearLayout = (LinearLayout) myInflatedView.findViewById(R.id.ingredients_list_layout);
         LinearLayout directionsLinearLayout = (LinearLayout) myInflatedView.findViewById(R.id.directions_list_layout);

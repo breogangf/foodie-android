@@ -79,8 +79,8 @@ public class RecipeDetailFragment extends Fragment {
         Picasso.with(getActivity()).load(mRecipe.getImage())
                 .placeholder(R.drawable.placeholder)
                 .error(R.drawable.error)
-                .fit()
-                .centerCrop()
+                .resize(700, 700)
+                .centerInside()
                 .into(image);
 
         for (int i = 0; i < mRecipe.getIngredients().size(); i++) {

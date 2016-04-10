@@ -18,27 +18,34 @@
             android:layout_height="wrap_content"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/detail_recipe_name"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/recipe_title_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:gravity="center_horizontal">
+                <TextView
+                    android:id="@+id/detail_recipe_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-            <ImageButton
-                android:id="@+id/share_button"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@id/detail_recipe_name"
-                android:background="@drawable/share"/>
+                <ImageButton
+                    android:id="@+id/share_button"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/share"/>
+
+            </LinearLayout>
+
+
 
             <ImageView
                 android:id="@+id/recipe_detail_picture"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/detail_recipe_name"
+                android:layout_below="@id/recipe_title_layout"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp" />
 

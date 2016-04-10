@@ -1,38 +1,52 @@
 package com.fivelabs.foodie.util;
 
-import android.util.Base64;
+import android.app.Activity;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.widget.Toast;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import com.fivelabs.foodie.R;
 
 /**
  * Created by breogangf on 28/9/15.
  */
 public class Common {
 
-    public static String generateToken(String username, String password){
-        String credentials = username + ":" + password;
-        String base64EncodedCredentials = Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-        return "Basic " + base64EncodedCredentials;
+    public static void shareViaWhatsapp(Activity activity, String message) {
+
+        PackageManager pm = activity.getPackageManager();
+        try {
+
+            Intent waIntent = new Intent(Intent.ACTION_SEND);
+            waIntent.setType("text/plain");
+
+            PackageInfo info = pm.getPackageInfo("com.whatsapp", PackageManager.GET_META_DATA);
+            //Check if package exists or not. If not then code
+            //in catch block will be called
+            waIntent.setPackage("com.whatsapp");
+
+            waIntent.putExtra(Intent.EXTRA_TEXT, message);
+            activity.startActivity(Intent.createChooser(waIntent, "Share with"));
+
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(activity, "WhatsApp not Installed", Toast.LENGTH_SHORT)
+                    .show();
+        }
+
     }
 
-    public static String capitalizeWord(String word){
-        return word.substring(0, 1).toUpperCase() + word.substring(1);
+    public static void shareAnyApp(Activity activity, String subject, String message) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, message);
+        activity.startActivity(Intent.createChooser(sharingIntent, activity.getResources().getString(R.string.share_using)));
     }
 
-    public static Long getCurrentTimestamp(){
-        return (System.currentTimeMillis() + TimeZone.getDefault().getRawOffset()/1000);
+    public static String generateRecipeURL(String recipeId) {
+        return Global.BASE_URL + recipeId;
+
     }
 
-    public static String getDateTimeTextFromTimestamp(Long timestamp){
-        Timestamp stamp = new Timestamp(timestamp);
-        Date date = new Date(stamp.getTime());
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat s = new SimpleDateFormat("dd MMM yyyy HH:mm");
-        s.setTimeZone(cal.getTimeZone());
-        return s.format(date);
-    }
 }

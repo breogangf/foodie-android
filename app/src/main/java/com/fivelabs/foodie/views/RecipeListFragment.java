@@ -144,7 +144,6 @@ public class RecipeListFragment extends Fragment {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
 
-                //TODO load recipe detail
                 loadRecipeById(Session.getSrecipes().get(position).get_id());
 
             }
@@ -157,7 +156,7 @@ public class RecipeListFragment extends Fragment {
         });
 
 
-        FloatingActionButton floatingActionButtonAdd = (FloatingActionButton) myInflatedView.findViewById(R.id.fab);
+        FloatingActionButton floatingActionButtonAdd = (FloatingActionButton) myInflatedView.findViewById(R.id.add_recipe);
         floatingActionButtonAdd.setOnClickListener(new View.OnClickListener() {
 
             @Override

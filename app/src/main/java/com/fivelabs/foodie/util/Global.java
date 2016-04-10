@@ -5,6 +5,10 @@ package com.fivelabs.foodie.util;
  */
 public class Global {
 
-    public static String IMAGES_URL = "http://foodie-5labs.rhcloud.com/images";
-    public static String API = "http://foodie-5labs.rhcloud.com/api";
+
+    public static String BASE_URL = "http://foodie-5labs.rhcloud.com/";
+    public static String IMAGES_URL = BASE_URL + "images";
+    public static String API = BASE_URL + "api";
+
+    public static String APP_DOWNLOAD_LINK = "http://www.5labs.com";
 }

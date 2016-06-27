@@ -68,7 +68,7 @@ public class Recipe implements Parcelable {
     }
 
     public String getImage() {
-        return Global.IMAGES_URL + "/" + image;
+        return Global.IMAGES_URL + image;
     }
 
     public void setImage(String image) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Foodie</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="love_this_recipe">"Me encanta esta receta! "</string>
+    <string name="loving_this_app">Me encanta esta aplicación de recetas</string>
+    <string name="make_some_noise">Hagamos un poco de ruido!</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="share_this_app_with_your_friends">Comparte esta app ;-)</string>
+    <string name="share_using">Compartir con</string>
+    <string name="steps">Pasos</string>
+    <string name="simple_and_delicious"><![CDATA[Simple y delicioso ;-)]]></string>
+    <string name="recipes">Recetas</string>
+</resources>

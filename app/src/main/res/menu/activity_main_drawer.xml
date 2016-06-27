@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_recipes"
             android:icon="@drawable/ic_menu_home"
-            android:title="Recipes" />
+            android:title="@string/recipes" />
 
     </group>
 

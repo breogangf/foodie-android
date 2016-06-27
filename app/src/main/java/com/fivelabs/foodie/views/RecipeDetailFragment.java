@@ -64,7 +64,7 @@ public class RecipeDetailFragment extends Fragment {
         share_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Common.shareAnyApp(getActivity(), "Foodie: " + mRecipe.getName() , getActivity().getString(R.string.love_this_recipe) + "\n" + Common.generateRecipeURL(mRecipe.get_id()));
+                Common.shareAnyApp(getActivity(), "Foodie: " + mRecipe.getName() , getActivity().getString(R.string.love_this_recipe) + "\n" + mRecipe.getName() + "\n" + Common.generateRecipeURL(mRecipe.get_id()));
             }
         });
 

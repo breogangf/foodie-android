@@ -27,7 +27,7 @@
                     android:id="@+id/detail_recipe_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="25sp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
 
                 <ImageButton
@@ -107,7 +107,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/fast_info"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:text="@string/ingredients" />
 
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ingredients_list_layout"
                 android:layout_marginTop="20dp"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
 
                 android:text="@string/steps" />

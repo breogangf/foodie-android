@@ -45,7 +45,7 @@ public class Common {
     }
 
     public static String generateRecipeURL(String recipeId) {
-        return Global.BASE_URL + recipeId;
+        return Global.BASE_URL + "#recipe/" + recipeId;
 
     }
 
